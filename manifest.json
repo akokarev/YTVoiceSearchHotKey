@@ -1,9 +1,11 @@
 {
     "name": "YTVoiceSearchHotKey",
-    "version": "1.2.41",
+    "version": "1.2.43",
     "description": "HotKey for YouTube voice search button",
     "manifest_version": 3,
 	"author": "Anton Kokarev (net-files@yandex.ru)",
+	"homepage_url": "https://github.com/akokarev/YTVoiceSearchHotKey",
+	"update_url": "https://raw.githubusercontent.com/akokarev/YTVoiceSearchHotKey/main/updates.xml",
     "background": {
         "service_worker": "background.js"
     },
