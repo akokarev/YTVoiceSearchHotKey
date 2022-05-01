@@ -3,7 +3,7 @@
     "version": "1.2.41",
     "description": "HotKey for YouTube voice search button",
     "manifest_version": 3,
-	"author": "Anton Kokarev (net-files@yandex.ru)"
+	"author": "Anton Kokarev (net-files@yandex.ru)",
     "background": {
         "service_worker": "background.js"
     },
