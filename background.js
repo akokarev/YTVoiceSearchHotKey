@@ -11,35 +11,35 @@ chrome.action.onClicked.addListener((tab) => {
 
 function clickVoiceAndStartVideo () {
 	
-	//console.log('clickVoiceAndStartVideo')
-
-	if (sessionStorage.getItem('YTClickVoice')==='0' || sessionStorage.getItem('YTClickVoice')===null || sessionStorage.getItem('YTClickVoice')==='6' || sessionStorage.getItem('YTClickVoice')==='7' || sessionStorage.getItem('YTClickVoice')==='8') {sessionStorage.setItem('YTClickVoice', '1')}
-	else {
-		//console.log('clickVoiceAndStartVideo exit')
-		return
-	}
-
-	
 	function clickVideo() {
-		//console.log('clickVideo')
+		console.log('clickVideo')
 		
 		if (sessionStorage.getItem('YTClickVoice')==='8') {sessionStorage.setItem('YTClickVoice', '9')}
 		else {
-			//console.log('whaitMicStateNull exit')
+			console.log('clickVideo exit')
 			return
 		}
 		
-		document.querySelector('#contents > ytd-item-section-renderer > div#contents > ytd-video-renderer > div#dismissible > ytd-thumbnail > a#thumbnail').click()
-		sessionStorage.setItem('YTClickVoice', '0')		
+		setTimeout(() => {
+			if (document.querySelector('#contents > ytd-item-section-renderer > div#contents > ytd-video-renderer > div#dismissible > ytd-thumbnail > a#thumbnail').click){
+				console.log('clickVideo finish')
+				sessionStorage.setItem('YTClickVoice', '0')
+				document.querySelector('#contents > ytd-item-section-renderer > div#contents > ytd-video-renderer > div#dismissible > ytd-thumbnail > a#thumbnail').click()
+			}else{
+				console.log('clickVideo wait')
+				sessionStorage.setItem('YTClickVoice', '8')
+				clickVideo()
+			}
+		},100)
 	}
 
 	
 	function whaitProgress100() {
-		//console.log('whaitProgress100 '+document.querySelector("body > ytd-app > yt-page-navigation-progress").getAttribute("aria-valuenow"))
+		console.log('whaitProgress100 '+document.querySelector("body > ytd-app > yt-page-navigation-progress").getAttribute("aria-valuenow"))
 		
 		if (sessionStorage.getItem('YTClickVoice')==='6') {sessionStorage.setItem('YTClickVoice', '7')}
 		else {
-			//console.log('whaitMicStateNull exit')
+			console.log('whaitMicStateNull exit')
 			return
 		}
 		
@@ -56,11 +56,11 @@ function clickVoiceAndStartVideo () {
 
 
 	function whaitMicStateNull(){
-		//console.log('whaitMicStateNull '+document.getElementById('microphone').getAttribute('state'))
+		console.log('whaitMicStateNull '+document.getElementById('microphone').getAttribute('state'))
 		
 		if (sessionStorage.getItem('YTClickVoice')==='4') {sessionStorage.setItem('YTClickVoice', '5')}
 		else {
-			//console.log('whaitMicStateNull exit')
+			console.log('whaitMicStateNull exit')
 			return
 		}
 
@@ -78,15 +78,15 @@ function clickVoiceAndStartVideo () {
 
 
 	function whaitMicStateNotNull(){
-		//console.log('whaitMicStateNotNull '+document.getElementById('microphone').getAttribute('state'))
+		console.log('whaitMicStateNotNull '+document.getElementById('microphone').getAttribute('state'))
 		
 		if (sessionStorage.getItem('YTClickVoice')==='2') {sessionStorage.setItem('YTClickVoice', '3')}
 		else {
-			//console.log('whaitMicStateNotNull exit')
+			console.log('whaitMicStateNotNull exit')
 			return
 		}
 		
-		setTimeout(() => {  
+		setTimeout(() => {
 			if (document.getElementById('microphone')) {
 				if (!document.getElementById('microphone').getAttribute('state')) {
 					sessionStorage.setItem('YTClickVoice', '4')
@@ -107,6 +107,15 @@ function clickVoiceAndStartVideo () {
 		}, 1000);
 	}
 
+
+
+	console.log('clickVoiceAndStartVideo')
+
+	if (sessionStorage.getItem('YTClickVoice')==='0' || sessionStorage.getItem('YTClickVoice')===null || sessionStorage.getItem('YTClickVoice')==='6' || sessionStorage.getItem('YTClickVoice')==='7' || sessionStorage.getItem('YTClickVoice')==='8' || sessionStorage.getItem('YTClickVoice')==='9') {sessionStorage.setItem('YTClickVoice', '1')}
+	else {
+		console.log('clickVoiceAndStartVideo exit')
+		return
+	}
 
 	document.getElementById('voice-search-button').firstChild.click()
 	sessionStorage.setItem('YTClickVoice', '2')
